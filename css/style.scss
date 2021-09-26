@@ -328,6 +328,7 @@ h1, h2, h3, h4, h5, h6, p {
 /* === MAIN === */
 
 .main__inner {
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -335,6 +336,7 @@ h1, h2, h3, h4, h5, h6, p {
 .main__sidebar {
     width: 25%;
     padding-right: 15px;
+    padding-top: 484px;
 }
 
 .main__content {
@@ -345,17 +347,51 @@ h1, h2, h3, h4, h5, h6, p {
 /* === sidebar === */
 
 .main__nav {
-    padding-bottom: 40px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
 }
 
-.nav_menu {
+.nav__menu {
+    position: relative;
+    padding-right: 15px;
     list-style: none;
     padding: 0;
     margin: 0;
-    border: 1px solid #cdd5d2;
+    .nav__menu-row {
+        width: 24%;
+        border-left: 1px solid #cdd5d2;
+        border-right: 1px solid #cdd5d2;
+        &:first-child {
+            border-top: 1px solid #cdd5d2;
+        }
+        &:last-child {
+            border-bottom: 1px solid #cdd5d2;
+        }
+        div {
+            position: relative;
+            &::after {
+                display: none;
+                content: "";
+                position: absolute;
+                right: -45px;
+                top: 50%;
+                z-index: 100;
+                transform: translateY(-50%) rotate(315deg);
+                width: 30px;
+                height: 30px;
+                background-color: #fff;
+                border-top: 2px solid #cdd5d2;
+                border-left: 2px solid #cdd5d2;
+            }
+        }
+    }
 }
 
 .nav__menu-item {
+    // width: 24%;
     position: relative;
     display: block;
     text-decoration: none;
@@ -432,6 +468,57 @@ h1, h2, h3, h4, h5, h6, p {
     }
 }
 
+.menu-item__block {
+    min-height: 442px;
+    margin-left: 15px;
+    display: none;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    width: 74%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 200;
+    list-style: none;
+    margin: 0;
+    padding: 20px 15px;
+    background: #fff;
+    border: 1px solid #cdd5d2; 
+    li {
+        width: 25%;
+        text-align: center;        
+        padding: 10px 18px;
+        margin-bottom: 25px;
+        a {            
+            display: block;           
+            text-decoration: none;
+            img {
+                width: 70%;
+            }
+            span {
+                display: block;
+                font-size: 12px;
+                color: #4d4d4d;
+                padding: 5px 0;
+                border-bottom: 1px solid #4d4d4d;
+            }
+            &:hover span {
+                color: $main-red;
+                border-color: $main-red;
+            }
+        }
+    }  
+}
+
+.nav__menu-row:hover {
+    .menu-item__block {
+        display: flex;
+    }
+    div::after {
+        display: block;
+    }
+}
+
 .sidebar {
     margin-bottom: 34px;
     border: 1px solid #cdd5d2;
@@ -493,7 +580,7 @@ h1, h2, h3, h4, h5, h6, p {
         cursor: pointer;
         position: absolute;
         top: -33px;
-        z-index: 100;
+        z-index: 1;
         transform: translateY(-50%);
         width: 20px;
         height: 20px;
@@ -724,7 +811,7 @@ h1, h2, h3, h4, h5, h6, p {
     position: absolute;
     bottom: 5px;
     left: 50%;
-    z-index: 100;
+    z-index: 1;
     transform: translateX(-50%);
     li {
         margin: 0 3px;
